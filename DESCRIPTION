@@ -1,0 +1,32 @@
+Package: superhot
+Type: Package
+Title: Heatmaps for correlation matrices
+Version: 0.1.0
+Author: MC
+Maintainer: Michael Clark <micl@umich.edu>
+Description: This produces an interactive heatmap for correlation matrices to better display the structure prior to modeling.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+License: MIT + file LICENSE
+URL: m-clark.github.io
+Year: 2017
+Depends:
+    R (>= 3.3.0)
+Imports:
+    dplyr,
+    scales,
+    brms,
+    base64enc,
+    htmlwidgets,
+    png,
+    assertthat,
+    RColorBrewer
+Suggests:
+    d3heatmap,
+    testthat,
+    psych,
+    shiny,
+    rstudioapi
+
