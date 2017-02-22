@@ -1,0 +1,6 @@
+language: r
+r:
+  - release
+cache: packages
+latex: false
+sudo: false
