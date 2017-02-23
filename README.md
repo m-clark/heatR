@@ -1,6 +1,6 @@
 # superhot
 
-![travis]https://travis-ci.org/m-clark/superhot.svg?branch=master
+![travis](https://travis-ci.org/m-clark/superhot.svg?branch=master)
 
 Visualizing correlation matrix structure.
 
