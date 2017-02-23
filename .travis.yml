@@ -1,6 +1,8 @@
 language: r
 r:
+  - oldrel
   - release
+  - devel
 cache: packages
 latex: false
 sudo: false
