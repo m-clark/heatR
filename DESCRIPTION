@@ -8,7 +8,7 @@ Description: This produces an interactive heatmap for correlation matrices to be
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-License: MIT + file LICENSE
+License: GPL-3 | file LICENSE
 URL: m-clark.github.io
 Year: 2017
 Depends:
