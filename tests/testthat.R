@@ -1,4 +1,4 @@
 library(testthat)
-library(superhot)
+library(heatR)
 
-test_check("superhot")
+test_check("heatR")

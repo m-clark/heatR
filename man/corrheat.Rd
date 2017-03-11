@@ -117,7 +117,7 @@ d3heatmap is a great tool for matrix visualization and highly
   you want explore a factor analysis you will have to do that separately.
 }
 \examples{
-library(superhot)
+library(heatR)
 corrheat(cor(mtcars), factanalOptions=list(rotation='varimax'), ordering='absolute')
 corrheat(cor(mtcars), factanalOptions=list(rotation='varimax'), ordering='raw')
 corrheat(Harman74.cor$cov, psychOptions=list(fm='ml'))

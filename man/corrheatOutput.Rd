@@ -33,18 +33,24 @@ Note that this is not a priority in the least for me at this time,
 }
 \examples{
 \donttest{
-library(superhot)
+library(heatR)
 library(shiny)
 
-ui <- fluidPage(
-  h1("A corrheat demo"),
-  selectInput("palette", "Palette", c("YlOrRd", "RdYlBu", "Greens", "Blues")),
-  corrheatOutput("heatmap")
+ui = fluidPage(
+  h1('A corrheat demo'),
+  selectInput('data', 'Data', c('mtcars', 'bfi', 'state.x77'), selected='bfi'),
+  corrheatOutput('heatmap')
 )
 
-server <- function(input, output, session) {
-  output$heatmap <- renderCorrheat({
-    corrheat(cor(mtcars), colors = input$palette)
+server = function(input, output) {
+  datasetInput = reactive({
+    switch(input$data,
+           'mtcars' = mtcars,
+           'bfi' = bfi,
+           'state.x77' = state.x77)
+  })
+  output$heatmap = renderCorrheat({
+    corrheat(cor(datasetInput(), use='pair'))
   })
 }
 

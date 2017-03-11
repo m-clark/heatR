@@ -84,7 +84,7 @@
 #' @seealso \code{\link[psych]{fa}}, \code{\link[stats]{factanal}}
 #'
 #' @examples
-#' library(superhot)
+#' library(heatR)
 #' corrheat(cor(mtcars), factanalOptions=list(rotation='varimax'), ordering='absolute')
 #' corrheat(cor(mtcars), factanalOptions=list(rotation='varimax'), ordering='raw')
 #' corrheat(Harman74.cor$cov, psychOptions=list(fm='ml'))
@@ -320,23 +320,29 @@ encodeAsPNG <- function(x, colors) {
 #'
 #' @examples
 #' \donttest{
-#' library(superhot)
+#' library(heatR)
 #' library(shiny)
 #'
-#' ui <- fluidPage(
-#'   h1("A corrheat demo"),
-#'   selectInput("palette", "Palette", c("YlOrRd", "RdYlBu", "Greens", "Blues")),
-#'   corrheatOutput("heatmap")
+#' ui = fluidPage(
+#'   h1('A corrheat demo'),
+#'   selectInput('data', 'Data', c('mtcars', 'bfi', 'state.x77'), selected='bfi'),
+#'   corrheatOutput('heatmap')
 #' )
 #'
-#' server <- function(input, output, session) {
-#'   output$heatmap <- renderCorrheat({
-#'     corrheat(cor(mtcars), colors = input$palette)
+#' server = function(input, output) {
+#'   datasetInput = reactive({
+#'     switch(input$data,
+#'            'mtcars' = mtcars,
+#'            'bfi' = bfi,
+#'            'state.x77' = state.x77)
+#'   })
+#'   output$heatmap = renderCorrheat({
+#'     corrheat(cor(datasetInput(), use='pair'))
 #'   })
 #' }
 #'
 #' shinyApp(ui, server)
-#' }
+#'}
 #'
 
 #' @export

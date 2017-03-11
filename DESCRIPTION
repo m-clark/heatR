@@ -1,7 +1,7 @@
-Package: superhot
+Package: heatR
 Type: Package
 Title: Heatmaps for correlation matrices
-Version: 0.1.0
+Version: 0.1.2
 Author: MC
 Maintainer: Michael Clark <micl@umich.edu>
 Description: This produces an interactive heatmap for correlation matrices to better display the structure prior to modeling.
@@ -21,9 +21,9 @@ Imports:
     htmlwidgets,
     png,
     assertthat,
+    d3heatmap,
     RColorBrewer
 Suggests:
-    d3heatmap,
     testthat,
     psych,
     shiny,
