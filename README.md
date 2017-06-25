@@ -14,6 +14,8 @@ Note that this is not for doing factor analysis and visualizing the results. The
 
 The interactive visualization produced is based on [d3heatmap](https://github.com/rstudio/d3heatmap).  The coloring is fixed for now (blue for positive correlation, red negative, fade to white as you go to zero), though that may change in the future. Other static options include the **psych** package's own `corr.plot` function as well as the **corrplot** package, though they are limited in different ways for my needs, hence this thing.
 
+### Note: recently, **d3heatmap** has been more or less abandoned in favor of the [heatmaply](https://github.com/talgalili/heatmaply) package, which utilizes **plotly**, and even has a function specific to correlation matrices.  It still uses the cluster analysis approach though, which is less useful for such matrices.  I definitely recommend it in lieu of **d3heatmap** though.
+
 
 To install:
 
