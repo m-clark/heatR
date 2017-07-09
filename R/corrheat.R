@@ -56,25 +56,31 @@
 #' @param ... currently ignored
 #'
 #'
-#' @details d3heatmap is a great tool for matrix visualization and highly
-#'   recommended. Correlation matrices are typically better visualized rather
-#'   than parsed numerically, and while one can do so with d3heatmap, one often
-#'   may not want the cluster based approach to ordering if dealing with a
-#'   correlation matrix, which may be too small column-wise to be useful for a
-#'   cluster analysis, or may be a specific type of data more amenable to a
-#'   measurement error approach (e.g. items from a particular scale).
+#' @details \code{d3heatmap} was a great tool for matrix visualization, though it has
+#'   largely been abandoned in favor of \code{heatmaply}, which I recommended for
+#'   standard matrices, though it also has functionality for correlation matrices.
+#'
+#'   Correlation matrices are typically better visualized rather than parsed
+#'   numerically, and while one can do so with various packages at this point,
+#'   they invariably only order based on cluster analysis (for reasons unknown),
+#'   and one often may not want the cluster based approach to ordering if
+#'   dealing with a correlation matrix, which may be too small column-wise to be
+#'   useful for a cluster analysis, or may be a specific type of data more
+#'   amenable to a measurement error approach (e.g. items from a particular
+#'   scale).
 #'
 #'   \code{corrheat} produces a color coded matrix in which Blue represents
 #'   positive, and Red, negative correlations, and fades to white the smaller
-#'   the values are.  The ordering is based on the results of a factor analysis from
-#'   the \code{\link[psych]{fa}} package (which is required).  Though one can
-#'   use factanal from base R, it's not recommended, and can actually be
+#'   the values are.  The ordering is based on the results of a factor analysis
+#'   from the \code{\link[psych]{fa}} package (which is required).  Though one
+#'   can use factanal from base R, it's not recommended, and can actually be
 #'   reproduced with an additional argument to the psych options (as such I will
-#'   deprecate this option). This function does not currently allow choice of
-#'   the number of factors. The number of factors is chosen to more likely 'just
-#'   work' for visualization purposes (\code{nfact = 1} if \code{ncol <=4}, else
-#'   \code{floor(sqrt(ncol(x)))}), which is all we are worried about here. If
-#'   you want explore a factor analysis you will have to do that separately.
+#'   likely deprecate this option). This function does not currently allow
+#'   choice of the number of factors. Instead, the number of factors is chosen
+#'   to more likely 'just work' for visualization purposes (\code{nfact = 1} if
+#'   \code{ncol <=4}, else \code{floor(sqrt(ncol(x)))}), which is all we are
+#'   worried about here. If you want explore a factor analysis you should
+#'   do that separately.
 #'
 #'
 #' @source Base code comes from \link[d3heatmap]{d3heatmap} package's core
