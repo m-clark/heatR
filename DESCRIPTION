@@ -16,11 +16,9 @@ Depends:
 Imports:
     dplyr,
     scales,
-    brms,
     base64enc,
     htmlwidgets,
     png,
-    assertthat,
     d3heatmap,
     RColorBrewer
 Suggests:
