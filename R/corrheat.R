@@ -147,7 +147,7 @@ corrheat <- function(x,
 
   if(nr != nc) stop("x must be a square matrix")
 
-  if(!all.equal(sort(x[lower.tri(x)]), sort(x[upper.tri(x)]))) stop('x must be a symmetric matrix')
+  if(class(all.equal(sort(x[lower.tri(x)]), sort(x[upper.tri(x)]))) == 'character') stop('x must be a symmetric matrix')
 
   ## Labels for Row/Column
   ##======================

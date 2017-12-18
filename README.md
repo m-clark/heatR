@@ -1,6 +1,7 @@
 # heatR
 
 ![travis](https://travis-ci.org/m-clark/heatR.svg?branch=master)
+[![codecov](https://codecov.io/gh/m-clark/heatR/branch/master/graph/badge.svg)](https://codecov.io/gh/m-clark/heatR)
 
 #### Visualizing correlation matrix structure
 
