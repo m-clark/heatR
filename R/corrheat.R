@@ -8,11 +8,11 @@
 #' @param x A complete correlation matrix
 #' @param psychOptions a \emph{named} list(!) of options to be passed to the psych package.
 #'   Do not include the \code{nfactors} argument, as that is chosen
-#'   automatically.
+#'   automatically. Default is \code{NULL}.
 #' @param factanalOptions a \emph{named} list(!) of options to be passed to the factanal
 #' function in base R. \code{psychOptions} will be checked first, and if present
 #' the psych package will be used and override this argument. Do not include the
-#' \code{factors} argument, as that is chosen automatically.
+#' \code{factors} argument, as that is chosen automatically. Default is \code{NULL}.
 #' @param ordering Order cols/rows based on \code{psych::fa.sort} (default), max
 #'   raw ("raw"), or absolute ("absolute") loadings across all factors, or based
 #'   on the first
@@ -137,10 +137,10 @@ corrheat <- function(x,
 
   ## Check that x is a square, symmetric matrix
   ##====================
-  if(!is.matrix(x)) {
-    x <- as.matrix(x)
-  }
-  if(!is.matrix(x)) stop("x must be a matrix")
+
+  if (is.null(dim(x))) stop("x does not appear to be something like a matrix.")
+
+  x <- as.matrix(x)  # note as.matrix almost never will return an error
 
   nr <- dim(x)[1]
   nc <- dim(x)[2]
@@ -151,18 +151,21 @@ corrheat <- function(x,
 
   ## Labels for Row/Column
   ##======================
-  if(is.null(labRow)) rownames(x) <-  paste0('var', 1:nr)
-  if(is.null(labCol)) colnames(x) <-  paste0('var', 1:nc)
+  if (is.null(labRow) & is.null(labCol)) {
+    rownames(x) = colnames(x) = paste0('var', 1:nr)
+  } else if (!all(rownames(x) == colnames(x))) {
+    stop('Rows and columns should represent the same thing, but the names are different.')
+  }
 
-  if(!missing(cexRow)) {
-    if(is.numeric(cexRow)) {
+  if (!missing(cexRow)) {
+    if (is.numeric(cexRow)) {
       yaxis_font_size <- cexRow * 14   # axes switched
     } else {
       warning("cexRow is not numeric. It is ignored")
     }
   }
-  if(!missing(cexCol)) {
-    if(is.numeric(cexCol)) {
+  if (!missing(cexCol)) {
+    if (is.numeric(cexCol)) {
       xaxis_font_size <- cexCol * 14
     } else {
       warning("cexCol is not numeric. It is ignored")
@@ -191,13 +194,13 @@ corrheat <- function(x,
       faResult = do.call(psych::fa, args)
     })
   } else {
-    if(!is.null(factanalOptions) | (is.null(factanalOptions) & is.null(psychOptions))) {
+    if (!is.null(factanalOptions) | (!is.null(psychOptions) && !requireNamespace('psych'))) {
+      message('Base R factanal used.')
       args = append(list(covmat=x, factors=nf), factanalOptions)
-    } else {
-      args = list(covmat=x, factors=nf)
     }
     tryCatch(
       faResult <- do.call(factanal, args),
+
       error = function(c) {
         c$message = paste('factanal failed with the following message: \n', c$message)
         stop(c)

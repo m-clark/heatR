@@ -22,12 +22,12 @@ corrheat(x, psychOptions = NULL, factanalOptions = NULL,
 
 \item{psychOptions}{a \emph{named} list(!) of options to be passed to the psych package.
 Do not include the \code{nfactors} argument, as that is chosen
-automatically.}
+automatically. Default is \code{NULL}.}
 
 \item{factanalOptions}{a \emph{named} list(!) of options to be passed to the factanal
 function in base R. \code{psychOptions} will be checked first, and if present
 the psych package will be used and override this argument. Do not include the
-\code{factors} argument, as that is chosen automatically.}
+\code{factors} argument, as that is chosen automatically. Default is \code{NULL}.}
 
 \item{ordering}{Order cols/rows based on \code{psych::fa.sort} (default), max
 raw ("raw"), or absolute ("absolute") loadings across all factors, or based
